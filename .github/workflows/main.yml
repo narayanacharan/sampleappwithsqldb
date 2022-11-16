@@ -32,3 +32,20 @@ jobs:
         with:
           name: depploypkg
           path: ${{ github.workspace }}
+  deploy-dev:
+    runs-on: 'ubuntu-latest'
+    environment: 'dev'
+    needs: build-and-publish
+    steps:
+      - name: teststep
+        run: |
+          write "test success"
+  deploy-stage:
+    runs-on: 'ubuntu-latest'
+    environment: 'stage'
+    needs: deploy-dev
+    steps:
+      - name: teststep
+        run: |
+          write "test success"
+       
