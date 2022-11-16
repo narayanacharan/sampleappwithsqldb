@@ -6,7 +6,7 @@ on:
       - "master"
 
 env:
-  DOTNET_VERSION: '4.0.1'
+  DOTNET_VERSION: '4.6.2'
 
 
 jobs:
