@@ -20,5 +20,18 @@ jobs:
       - name: Setup NuGet
         uses: NuGet/setup-nuget@v1.0.5
         
+      - name: Create Build Directory
+        run: mkdir _build
+        
       - name: Restore Packages
         run: nuget restore DotNetAppSqlDb.sln
+      
+      - name: Build Solution
+        run: |
+          msbuild.exe DotNetAppSqlDb.sln /p:platform="Any CPU" /p:configuration="Release"
+      
+      - name: Upload artifact
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          name: depploypkg
+          path: "./_build"
